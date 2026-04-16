@@ -1,28 +1,15 @@
-import express from 'express';
+//yarn
+import express from "express";
+import cors from "cors";
 const app = express();
-const port = 3000;
-const jsonMiddleware = express.json();
-app.use(jsonMiddleware);
-const db = {
-    users: [
-        { name: "Jonh", position: "front-end", workExp: 5 },
-        { name: "George", position: "back-end", workExp: 2 },
-        { name: "William", position: "fullstack", workExp: 7 },
-        { name: "Jessy", position: "team-leader", workExp: 6 }
-    ]
-};
-app.get('/', (req, res) => {
-    res.send({ message: 'hello' });
+app.use(cors());
+app.get("/products", (req, res) => {
+    res.json([
+        { id: 1, name: "Clock Classic", price: 100 },
+        { id: 2, name: "Clock Pro", price: 200 }
+    ]);
 });
-app.get('/users', (req, res) => {
-    res.send(db.users);
-    let foundUsers = db.users;
-    if (req.query.name) {
-        foundUsers = foundUsers.filter(u => u.name.indexOf(req.query.name) > -1);
-    }
-    res.json(foundUsers);
-});
-app.listen(port, () => {
-    console.log(`Examply app listening on port ${port}`);
+app.listen(5000, () => {
+    console.log("Server działa na http://localhost:5000");
 });
 //# sourceMappingURL=index.js.map
