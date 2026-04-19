@@ -1,66 +1,79 @@
 //npm
 import logo from './logo-clock-white.svg';
 import logo_orange from './logo-clock-orange.svg';
-import { useEffect, useState } from "react";
+import seach from './seach.svg'
+import useState from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
+import Products from "./Products"
+import Home from "./Home"
 import './App.css';
 
 const Header = () => {
+  let isOpen = false;
+
+  const toggleSeach = () => {
+    const input = document.getElementById('seachInput');
+    const centre = document.getElementById('centreHeader');
+
+    if (!input || !centre) return;
+
+    if (!isOpen) {
+      centre.className = 'moveIn';
+      input.className = 'grow';
+      isOpen = true;
+    } else {
+      centre.className = 'moveOut';
+      input.className = 'shrink';
+      isOpen = false;
+    }
+  };
   return (
     <nav>
       <img id="logo" src={logo} />
-      <div id='right'>
-        <img src={logo_orange} id='home' class='icons' href='/' />
-        {/* home ^ */}
-        <button className="icons">
-          <img src={logo_orange} alt="home" />
-        </button>
-        <button className="icons">
-          <img src={logo_orange} alt="profile" />
-        </button>
-        <button className="icons">
-          <img src={logo_orange} alt="seach" />
-        </button>
-        <button className="icons">
-          <img src={logo_orange} alt="cart" />
+      <div id='centreHeader'>
+        <NavLink to="/" className='navButton'>
+          <img src={logo_orange} className="icons" alt="home" />
+        </NavLink>
+        <NavLink to="/products" className='navButton'>
+          <img src={logo_orange} className="icons" alt="products" />
+        </NavLink>
+        <NavLink className='navButton'>
+          <img src={logo_orange} className="icons" alt="cart" />
+        </NavLink>
+        <button onClick={toggleSeach} className='navButton' id='seachButton'>
+          <img src={seach} className="icons" alt="seach" />
         </button>
       </div>
+      <input type='seach' id='seachInput'></input>
+      <NavLink to="/profile" id='rightHeader' className='navButton'>
+        <img src={logo_orange} className="icons" alt="profile" />
+      </NavLink>
     </nav>
   );
 }
 const Main = () => {
   return (
-    <main>
-      <h2>Produkty</h2>
-
-      {products.map(p => (
-        <div key={p.id}>
-          {p.name} - {p.price} zł
-        </div>
-      ))}
-    </main>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/products' element={<Products />} />
+    </Routes>
   )
 }
 const Footer = () => {
   return (
     <footer>
-      
+
     </footer>
   )
 }
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then(res => res.json())
-      .then(data => setProducts(data));
-  }, []);
   return (
-    <>
+    <div>
       <Header />
       <Main />
       <Footer />
-    </>
+    </div>
   );
 }
 
