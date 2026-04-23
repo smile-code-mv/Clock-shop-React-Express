@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "yarn": "^1.22.22"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn watch\" \" yarn server\" \"yarn  dev:front\"",
+    "dev:back": "concurrently \"yarn watch\" \"yarn server\"",
+    "dev:front": "yarn --cwd frontend start",
+    "server": "yarn --cwd backend dev",
+    "watch": "yarn --cwd backend watch"
+  }
+}
