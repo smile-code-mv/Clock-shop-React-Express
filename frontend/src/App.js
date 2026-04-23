@@ -1,7 +1,8 @@
 //npm
 import logo from './logo-clock-white.svg';
 import logo_orange from './logo-clock-orange.svg';
-import seach from './seach.svg'
+import seachImg from './seach.svg'
+import homeImg from './home.svg'
 import useState from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import Products from "./Products"
@@ -12,27 +13,24 @@ const Header = () => {
   let isOpen = false;
 
   const toggleSeach = () => {
-    const input = document.getElementById('seachInput');
-    const centre = document.getElementById('centreHeader');
+    const input = document.getElementById('seachInput')
 
-    if (!input || !centre) return;
+    if (!input) return;
 
     if (!isOpen) {
-      centre.className = 'moveIn';
       input.className = 'grow';
-      isOpen = true;
+      isOpen = true
     } else {
-      centre.className = 'moveOut';
       input.className = 'shrink';
-      isOpen = false;
+      isOpen = false
     }
   };
   return (
-    <nav>
+    <header>
       <img id="logo" src={logo} />
       <div id='centreHeader'>
         <NavLink to="/" className='navButton'>
-          <img src={logo_orange} className="icons" alt="home" />
+          <img src={homeImg} className="icons" alt="home" />
         </NavLink>
         <NavLink to="/products" className='navButton'>
           <img src={logo_orange} className="icons" alt="products" />
@@ -41,14 +39,14 @@ const Header = () => {
           <img src={logo_orange} className="icons" alt="cart" />
         </NavLink>
         <button onClick={toggleSeach} className='navButton' id='seachButton'>
-          <img src={seach} className="icons" alt="seach" />
+          <img src={seachImg} className="icons" alt="seach" />
         </button>
       </div>
-      <input type='seach' id='seachInput'></input>
+      <input type='seach' id='seachInput' className='navButton'></input>
       <NavLink to="/profile" id='rightHeader' className='navButton'>
         <img src={logo_orange} className="icons" alt="profile" />
       </NavLink>
-    </nav>
+    </header>
   );
 }
 const Main = () => {
