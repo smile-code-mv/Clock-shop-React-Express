@@ -1,12 +1,15 @@
 //npm
-import logo from './logo-clock-white.svg';
-import logo_orange from './logo-clock-orange.svg';
-import seachImg from './seach.svg'
-import homeImg from './home.svg'
+import logo from './icons/logo_clock_white.svg';
+import logo_orange from './icons/logo-clock-orange.svg';
+import homeIcon from './icons/home.svg'
+import productsIcon from './icons/bag.svg'
+import cartIcon from './icons/cart.svg'
+import seachIcon from './icons/seach.svg'
+import profileIcon from './icons/profile.svg'
 import useState from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
-import Products from "./Products"
-import Home from "./Home"
+import Products from "./components/Products"
+import Home from "./components/Home"
 import './App.css';
 
 const Header = () => {
@@ -30,21 +33,21 @@ const Header = () => {
       <img id="logo" src={logo} />
       <div id='centreHeader'>
         <NavLink to="/" className='navButton'>
-          <img src={homeImg} className="icons" alt="home" />
+          <img src={homeIcon} className="icons" alt="home" />
         </NavLink>
         <NavLink to="/products" className='navButton'>
-          <img src={logo_orange} className="icons" alt="products" />
+          <img src={productsIcon} className="icons" alt="products" />
         </NavLink>
         <NavLink className='navButton'>
-          <img src={logo_orange} className="icons" alt="cart" />
+          <img src={cartIcon} className="icons" alt="cart" />
         </NavLink>
         <button onClick={toggleSeach} className='navButton' id='seachButton'>
-          <img src={seachImg} className="icons" alt="seach" />
+          <img src={seachIcon} className="icons" alt="seach" />
         </button>
       </div>
       <input type='seach' id='seachInput' className='navButton'></input>
-      <NavLink to="/profile" id='rightHeader' className='navButton'>
-        <img src={logo_orange} className="icons" alt="profile" />
+      <NavLink to="/profile" id='profileHeader' className='navButton'>
+        <img src={profileIcon} id='profileIcon' className="icons" alt="profile" />
       </NavLink>
     </header>
   );
