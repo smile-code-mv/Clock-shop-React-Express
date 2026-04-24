@@ -15,7 +15,7 @@ To run this project locally, you need to install the dependencies in both the ba
 1. **Clone and check branch:**
    ```bash
    git clone <your-repository-url>
-   cd "clock shop"
+   cd clock shop
    git checkout main
    ```
 
