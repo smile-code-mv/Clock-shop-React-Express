@@ -4,7 +4,7 @@ header{
   padding: 5%;
   align-items: center;
   width: 100vw;
-  height: 5vh;
+  height: 4vh;
   background-color: black;
   position: fixed;
 }
@@ -17,19 +17,33 @@ a{
   border-color: white;
 }
 .navButton{
+  position: relative;
   padding: 1%;
   width: 20%;
   aspect-ratio: 5/3;
 }
+.navLink{
+  position: relative;
+}
+.navLink::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: blue;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+  transform-origin: bottom right;
+}
+.navLink.active::after{
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 .icons{
   width: 90%;
   height: 90%;
-}
-.grow{
-  animation: grow 1s linear forwards;
-}
-.shrink{
-  animation: shrink 0.9s linear forwards;
 }
 #logo{
   width: 10%;
@@ -44,9 +58,9 @@ a{
   gap: 1vw;
 }
 #profileHeader{
+  width: 12%;
   aspect-ratio: 1.5/1;
   margin-right: 5%;
-  width: 15%;
 }
 #profileIcon{
   border: 1px solid none;
@@ -59,38 +73,38 @@ a{
 }
 #seachInput{
   display: block;
-  width: 0vw;
-  height: 100%;
-  border-radius: 15px;
+  width: 0;
   opacity: 0;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: width 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
 }
-@keyframes grow {
-  from {
-    opacity: 0;
-    width: 0;
-  }
-  to{
-    opacity: 100%;
-    width: 40%;
-  }
-}
-@keyframes shrink {
-  from{
-    opacity: 100%;
-    width: 40%;
-  }
-  to {
-    opacity: 0;
-    width: 1vw;
-  }
+#seachInput.grow{
+  width: 40%;
+  opacity: 1;
+  padding: 0 10px;
 }
 /* Main */
 main{
   display: flex;
+  width: 100vw;
+  height: 96vh;
+  flex-wrap: wrap;
+  text-align: center;
   align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 50vh;
   background-color: lightgrey;
+}
+h1{
+  text-align: center;
 }
 /* Footer */
 footer{
